@@ -54,9 +54,7 @@ namespace Kvitteringer.Database.DaoImplements
 
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@købsDato", t.købsDato);
-            Debug.WriteLine(t.købsDato + "  købs dato");
             command.Parameters.AddWithValue("@slutDato", t.slutDato);
-           
             command.Parameters.AddWithValue("@ordreNummer", t.ordreNummer);
             command.Parameters.AddWithValue("@firmaId", firmaId);
             command.Parameters.AddWithValue("@email", t.email);
@@ -100,13 +98,13 @@ namespace Kvitteringer.Database.DaoImplements
                             while (reader.Read())
                             {
 
-                                string firmaNavn = reader.GetString(0); // Assuming the first column contains firmaNavn
-                                DateOnly købsDato = DateOnly.FromDateTime(reader.GetDateTime(1)); // Assuming the second column contains købsDato
-                                DateOnly slutDato = DateOnly.FromDateTime(reader.GetDateTime(2)); // Assuming the third column contains slutDato
-                                int ordreNummer = reader.GetInt32(3); // Assuming the fourth column contains ordreNummer
-                                string email = reader.GetString(4); // Assuming the fifth column contains email
-                                string produktNavn = reader.GetString(5); // Assuming the sixth column contains produktNavn
-                                double produktPris = reader.GetDouble(6); // Assuming the seventh column contains produktPris
+                                string firmaNavn = reader.GetString(0); 
+                                DateOnly købsDato = DateOnly.FromDateTime(reader.GetDateTime(1)); 
+                                DateOnly slutDato = DateOnly.FromDateTime(reader.GetDateTime(2)); 
+                                int ordreNummer = reader.GetInt32(3);
+                                string email = reader.GetString(4); 
+                                string produktNavn = reader.GetString(5); 
+                                double produktPris = reader.GetDouble(6);
 
 
                                 Kvittering kvittering = new Kvittering(firmaNavn, købsDato, slutDato, ordreNummer, email, produktNavn, produktPris);
