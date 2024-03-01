@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kvitteringer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1200">
+        Title="MainWindow" Height="900" Width="1500">
     <Grid>
         <Canvas Margin="24,29,575,37">
             <TextBox  x:Name="firmaNavnBox" HorizontalAlignment="Center" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Canvas.Left="20" Canvas.Top="25"/>
@@ -15,15 +15,15 @@
             <TextBox x:Name="produktNummerBox" HorizontalAlignment="Center" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Canvas.Left="20" Canvas.Top="226" />
             <DatePicker x:Name="købsDatoPicker" Canvas.Left="248" Canvas.Top="88" Height="135" Width="320"/>
             <Label Content="Købs dato" Canvas.Left="248" Canvas.Top="57" HorizontalAlignment="Left" VerticalAlignment="Center" Width="136"/>
-            <DataGrid x:Name="data" Canvas.Left="614" Canvas.Top="95" Height="402" Width="549" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <DataGrid x:Name="data" Canvas.Left="248" Canvas.Top="320" Height="402" Width="1195" AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True"  MouseLeftButtonUp="data_MouseLeftButtonUp">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Firma navn" Binding="{Binding firmaNavn}" />
                     <DataGridTextColumn Header="Købs Dato" Binding="{Binding købsDato}"/>
                     <DataGridTextColumn Header="Slut Dato" Binding="{Binding slutDato}"/>
                     <DataGridTextColumn Header="Ordre nummer" Binding="{Binding ordreNummer}" />
-                    <DataGridTextColumn Header="Email link" Binding="{Binding email}"/>
                     <DataGridTextColumn Header="Produkt Navn" Binding="{Binding produktNavn}"/>
                     <DataGridTextColumn Header="Pris" Binding="{Binding produktPris}"/>
+                    <DataGridTextColumn Header="Email link" Binding="{Binding email}"/>
                 </DataGrid.Columns>
 
             </DataGrid>
@@ -36,7 +36,7 @@
             <Label Content="Produkt Nummer" Canvas.Left="20" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="201"/>
             <Label Content="Email" Canvas.Left="20" Width="120" Canvas.Top="246" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </Canvas>
-        <TextBox TextChanged="SearchBox_TextChanged" HorizontalAlignment="Left" Margin="738,78,0,0" TextWrapping="Wrap" x:Name="SearchBox" VerticalAlignment="Top" Width="387" Height="34"/>
-        <Label FontSize="20" Content="Search for a specific produkt" HorizontalAlignment="Left" Margin="738,29,0,0" VerticalAlignment="Top" Height="44" Width="387"/>
+        <TextBox TextChanged="SearchBox_TextChanged" HorizontalAlignment="Left" Margin="692,282,0,0" TextWrapping="Wrap" x:Name="SearchBox" VerticalAlignment="Top" Width="387" Height="34"/>
+        <Label FontSize="20" Content="Search for a specific produkt" HorizontalAlignment="Left" Margin="738,233,0,0" VerticalAlignment="Top" Height="44" Width="387"/>
     </Grid>
 </Window>

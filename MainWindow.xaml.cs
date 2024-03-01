@@ -24,9 +24,11 @@ namespace Kvitteringer
         Converter converter = new Converter();
         Search search = new Search();
         List<Kvittering> firmlist = new List<Kvittering>();
+        GoogleSøgning googleSøgning = new GoogleSøgning();
         public MainWindow()
         {
             InitializeComponent();
+            PositionWindowAtTopLeft();
             updateList();
         }
         public void updateList()
@@ -84,9 +86,19 @@ namespace Kvitteringer
             else
             {
                 data.ItemsSource = "";
-                data.ItemsSource = search.searchForeProductName()
+                data.ItemsSource = search.searchForeProductName(SearchBox.Text,firmlist);
             }
 
+        }
+        private void PositionWindowAtTopLeft()
+        {
+            Left = 0;
+            Top = 0;
+        }
+
+        private void data_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            googleSøgning.findEmail(data);
         }
     }
 }

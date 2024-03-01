@@ -16,15 +16,17 @@ namespace Kvitteringer
     public class Search
     {
 
-        public void searchForeProductName(string searchTerm, List<Kvittering> firmlist, DataGrid data)
+        public List<Kvittering> searchForeProductName(string searchTerm, List<Kvittering> firmlist)
         {
+            List<Kvittering> filteredList = new List<Kvittering>();
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                firmlist = firmlist.Where(k => k.produktNavn.Contains(searchTerm)).ToList();
-                Debug.WriteLine(firmlist);
-                data.ItemsSource = firmlist;
+                filteredList = firmlist.Where(k => k.produktNavn.Contains(searchTerm)).ToList();
             }
+
+            return filteredList;
         }
+
     }
 }
