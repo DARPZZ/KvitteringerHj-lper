@@ -101,7 +101,7 @@ namespace Kvitteringer.Database.DaoImplements
                                 string firmaNavn = reader.GetString(0); 
                                 DateOnly købsDato = DateOnly.FromDateTime(reader.GetDateTime(1)); 
                                 DateOnly slutDato = DateOnly.FromDateTime(reader.GetDateTime(2)); 
-                                int ordreNummer = reader.GetInt32(3);
+                                long ordreNummer = reader.GetInt64(3);
                                 string email = reader.GetString(4); 
                                 string produktNavn = reader.GetString(5); 
                                 double produktPris = reader.GetDouble(6);
