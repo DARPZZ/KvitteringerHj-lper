@@ -19,7 +19,7 @@ namespace Kvitteringer.Database.DaoObjects
         public double produktPris { get; set; }
 
 
-        public Kvittering(DateOnly købsDato, DateOnly slutDato, int ordreNummer, string email, string firmaNavn, string produktNavn, int produktPris)
+        public Kvittering(DateOnly købsDato, DateOnly slutDato, int ordreNummer, string email, string firmaNavn, string produktNavn, double produktPris)
         {
             this.købsDato = købsDato;
             this.slutDato = slutDato;

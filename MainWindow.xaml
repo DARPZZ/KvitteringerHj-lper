@@ -8,11 +8,11 @@
         Title="MainWindow" Height="900" Width="1500">
     <Grid>
         <Canvas Margin="24,29,575,37">
-            <TextBox  x:Name="firmaNavnBox" HorizontalAlignment="Center" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Canvas.Left="20" Canvas.Top="25"/>
-            <TextBox x:Name="ordreNummerBox" HorizontalAlignment="Center" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Canvas.Left="20" Canvas.Top="75"/>
-            <TextBox x:Name="produktNavnbox" HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Canvas.Left="20" Canvas.Top="128" />
-            <TextBox x:Name="produktPrisBox" HorizontalAlignment="Center" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Canvas.Left="20" Canvas.Top="178" />
-            <TextBox x:Name="produktNummerBox" HorizontalAlignment="Center" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Canvas.Left="20" Canvas.Top="226" />
+            <TextBox MaxHeight="30" x:Name="firmaNavnBox" HorizontalAlignment="Center" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Canvas.Left="20" Canvas.Top="107"/>
+            <TextBox MaxHeight="30" x:Name="ordreNummerBox" HorizontalAlignment="Center" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Canvas.Left="20" Canvas.Top="182"/>
+            <TextBox MaxHeight="30" x:Name="produktNavnbox" HorizontalAlignment="Center" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Canvas.Left="20" Canvas.Top="254" />
+            <TextBox MaxHeight="30" x:Name="produktPrisBox" HorizontalAlignment="Center" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Canvas.Left="20" Canvas.Top="334" />
+            <TextBox MaxHeight="30" x:Name="produktNummerBox" HorizontalAlignment="Center" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Canvas.Left="20" Canvas.Top="409" />
             <DatePicker x:Name="købsDatoPicker" Canvas.Left="248" Canvas.Top="88" Height="135" Width="320"/>
             <Label Content="Købs dato" Canvas.Left="248" Canvas.Top="57" HorizontalAlignment="Left" VerticalAlignment="Center" Width="136"/>
             <DataGrid x:Name="data" Canvas.Left="248" Canvas.Top="320" Height="402" Width="1195" AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True"  MouseLeftButtonUp="data_MouseLeftButtonUp">
@@ -27,14 +27,23 @@
                 </DataGrid.Columns>
 
             </DataGrid>
-            <Button Click="Opret_Click" Content="Opret" Canvas.Left="20" Canvas.Top="323" Height="30" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="emailBox" TextWrapping="Wrap"  Width="120" Canvas.Left="20" Canvas.Top="277" HorizontalAlignment="Center" VerticalAlignment="Top" />
-            <Label Content="Firma navn" Canvas.Left="20" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Ordre nummer" Canvas.Left="20" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="49"/>
-            <Label Content="Produkt navn" Canvas.Left="20" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="97"/>
-            <Label Content="Produkt pris" Canvas.Left="20" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="152"/>
-            <Label Content="Produkt Nummer" Canvas.Left="20" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="201"/>
-            <Label Content="Email" Canvas.Left="20" Width="120" Canvas.Top="246" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Button Click="Opret_Click" Content="Opret" Canvas.Left="20" Canvas.Top="570" Height="30" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBox MaxHeight="20" x:Name="emailBox" TextWrapping="Wrap"  Width="120" Canvas.Left="20" Canvas.Top="491" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+                <TextBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="4.583"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-0.72"/>
+                    </TransformGroup>
+                </TextBox.RenderTransform>
+            </TextBox>
+            <Label Content="Firma navn" Canvas.Left="20" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Canvas.Top="82"/>
+            <Label Content="Ordre nummer" Canvas.Left="20" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="156"/>
+            <Label Content="Produkt navn" Canvas.Left="20" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="223"/>
+            <Label Content="Produkt pris" Canvas.Left="20" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="308"/>
+            <Label Content="Produkt Nummer" Canvas.Left="20" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="384"/>
+            <Label Content="Email" Canvas.Left="20" Width="120" Canvas.Top="460" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </Canvas>
         <TextBox TextChanged="SearchBox_TextChanged" HorizontalAlignment="Left" Margin="692,282,0,0" TextWrapping="Wrap" x:Name="SearchBox" VerticalAlignment="Top" Width="387" Height="34"/>
         <Label FontSize="20" Content="Search for a specific produkt" HorizontalAlignment="Left" Margin="738,233,0,0" VerticalAlignment="Top" Height="44" Width="387"/>

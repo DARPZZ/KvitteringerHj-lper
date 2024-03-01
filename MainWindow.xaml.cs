@@ -62,11 +62,11 @@ namespace Kvitteringer
             købsDato = new DateOnly(int.Parse(converter.købYear), int.Parse(converter.KøbMonth), int.Parse(converter.KøbDay));
             slutdato = new DateOnly(int.Parse(converter.slutYear), int.Parse(converter.slutMonth), int.Parse(converter.slutDay));
 
-            int ordrenummer = int.Parse(ordreNummerBox.Text);
+            int ordrenummer = (int)Int128.Parse(ordreNummerBox.Text);
             string email = emailBox.Text;
             string firmanavn = firmaNavnBox.Text;
             string produktNavn = produktNavnbox.Text;
-            int produktPris = int.Parse(produktPrisBox.Text);
+            double produktPris = double.Parse(produktPrisBox.Text);
             Kvittering kvittering = new Kvittering(købsDato, slutdato, ordrenummer, email, firmanavn, produktNavn, produktPris);
             daoKvitering.Create(kvittering);
         }
