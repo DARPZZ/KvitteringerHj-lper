@@ -18,8 +18,8 @@
             <DataGrid x:Name="data" Canvas.Left="248" Canvas.Top="320" Height="402" Width="1195" AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True"  MouseLeftButtonUp="data_MouseLeftButtonUp">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Firma navn" Binding="{Binding firmaNavn}" />
-                    <DataGridTextColumn Header="Købs Dato" Binding="{Binding købsDato}"/>
-                    <DataGridTextColumn Header="Slut Dato" Binding="{Binding slutDato}"/>
+                    <DataGridTextColumn Header="Købs Dato" Binding="{Binding FormattedKøbsDato}"/>
+                    <DataGridTextColumn Header="Slut Dato" Binding="{Binding FormattedSlutDato}"/>
                     <DataGridTextColumn Header="Ordre nummer" Binding="{Binding ordreNummer}" />
                     <DataGridTextColumn Header="Produkt Navn" Binding="{Binding produktNavn}"/>
                     <DataGridTextColumn Header="Pris" Binding="{Binding produktPris}"/>

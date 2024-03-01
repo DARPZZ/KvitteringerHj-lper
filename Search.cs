@@ -22,11 +22,12 @@ namespace Kvitteringer
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                filteredList = firmlist.Where(k => k.produktNavn.Contains(searchTerm)).ToList();
+                filteredList = firmlist.Where(k => k.produktNavn.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
             }
 
             return filteredList;
         }
+
 
     }
 }

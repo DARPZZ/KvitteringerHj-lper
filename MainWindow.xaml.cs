@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,11 +21,13 @@ namespace Kvitteringer
 
     public partial class MainWindow : Window
     {
+        public List<Kvittering> firmListWithFormattedDates { get; set; }
         DaoKvitering daoKvitering = new DaoKvitering();
         Converter converter = new Converter();
         Search search = new Search();
         List<Kvittering> firmlist = new List<Kvittering>();
         GoogleSøgning googleSøgning = new GoogleSøgning();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,21 +36,25 @@ namespace Kvitteringer
         }
         public void updateList()
         {
+           upList();
+            data.ItemsSource = firmListWithFormattedDates;
 
-            var firms = daoKvitering.GetAll();
-            firmlist = [.. firms];
-            data.ItemsSource = firmlist;
+
         }
+
+      
+
+
+
         public async Task updateListAsync()
         {
             await Task.Run(() =>
             {
-                var firms = daoKvitering.GetAll();
-                firmlist = new List<Kvittering>(firms);
+                upList();
 
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    data.ItemsSource = firmlist;
+                    data.ItemsSource = firmListWithFormattedDates;
                 });
             });
         }
@@ -61,7 +68,6 @@ namespace Kvitteringer
             converter.convertSlutDato(slutdato, købsDatoPicker);
             købsDato = new DateOnly(int.Parse(converter.købYear), int.Parse(converter.KøbMonth), int.Parse(converter.KøbDay));
             slutdato = new DateOnly(int.Parse(converter.slutYear), int.Parse(converter.slutMonth), int.Parse(converter.slutDay));
-
             long ordrenummer = Int64.Parse(ordreNummerBox.Text);
             string email = emailBox.Text;
             string firmanavn = firmaNavnBox.Text;
@@ -87,7 +93,8 @@ namespace Kvitteringer
             else
             {
                 data.ItemsSource = "";
-                data.ItemsSource = search.searchForeProductName(SearchBox.Text,firmlist);
+                data.ItemsSource = search.searchForeProductName(SearchBox.Text, firmListWithFormattedDates);
+                
             }
 
         }
@@ -100,6 +107,21 @@ namespace Kvitteringer
         private void data_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             googleSøgning.findEmail(data);
+        }
+        public void upList()
+        {
+            var firms = daoKvitering.GetAll();
+            firmListWithFormattedDates = firms.Select(kvittering => new Kvittering
+            {
+                købsDato = DateOnly.Parse(kvittering.FormattedKøbsDato),
+                slutDato = DateOnly.Parse(kvittering.FormattedSlutDato),
+                ordreNummer = kvittering.ordreNummer,
+                email = kvittering.email,
+                firmaId = kvittering.firmaId,
+                firmaNavn = kvittering.firmaNavn,
+                produktNavn = kvittering.produktNavn,
+                produktPris = kvittering.produktPris
+            }).ToList();
         }
     }
 }

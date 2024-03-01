@@ -30,6 +30,9 @@ namespace Kvitteringer.Database.DaoObjects
             this.produktNavn = produktNavn;
             this.produktPris = produktPris;
         }
+        public string FormattedKøbsDato => købsDato.ToString("dd/MM/yyyy"); // Change the format as needed
+        public string FormattedSlutDato => slutDato.ToString("dd/MM/yyyy"); // Change the format as needed
+
         public Kvittering(int kvitId, DateOnly købsDatoOnly, DateOnly slutDato, long ordreNummer, int firmaId, string email, string produktNavn, double produktPris)
         {
             this.kvitId = kvitId;
@@ -42,7 +45,10 @@ namespace Kvitteringer.Database.DaoObjects
             this.produktPris = produktPris;
         }
 
-      
+        public Kvittering()
+        {
+        }
+
         public Kvittering(string firmaNavn, DateOnly købsDato, DateOnly slutDato, long ordreNummer, string email, string produktNavn, double produktPris)
         {
             this.firmaNavn = firmaNavn;
