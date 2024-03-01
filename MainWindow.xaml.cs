@@ -23,6 +23,7 @@ namespace Kvitteringer
         DaoKvitering daoKvitering = new DaoKvitering();
         Converter converter = new Converter();
         Search search = new Search();
+        List<Kvittering> firmlist = new List<Kvittering>();
         public MainWindow()
         {
             InitializeComponent();
@@ -32,19 +33,19 @@ namespace Kvitteringer
         {
 
             var firms = daoKvitering.GetAll();
-            List<Kvittering> firmList = [.. firms];
-            data.ItemsSource = firmList;
+            firmlist = [.. firms];
+            data.ItemsSource = firmlist;
         }
         public async Task updateListAsync()
         {
             await Task.Run(() =>
             {
                 var firms = daoKvitering.GetAll();
-                List<Kvittering> firmList = new List<Kvittering>(firms);
-                
+                firmlist = new List<Kvittering>(firms);
+
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    data.ItemsSource = firmList;
+                    data.ItemsSource = firmlist;
                 });
             });
         }
@@ -56,15 +57,15 @@ namespace Kvitteringer
             DateOnly slutdato = new DateOnly();
             converter.convertKøbsDato(købsDato, købsDatoPicker);
             converter.convertSlutDato(slutdato, købsDatoPicker);
-            købsDato = new DateOnly(int.Parse( converter.købYear),int.Parse( converter.KøbMonth), int.Parse( converter.KøbDay));
-            slutdato = new DateOnly(int.Parse(converter.slutYear), int.Parse(converter.slutMonth), int.Parse( converter.slutDay));
-            
+            købsDato = new DateOnly(int.Parse(converter.købYear), int.Parse(converter.KøbMonth), int.Parse(converter.KøbDay));
+            slutdato = new DateOnly(int.Parse(converter.slutYear), int.Parse(converter.slutMonth), int.Parse(converter.slutDay));
+
             int ordrenummer = int.Parse(ordreNummerBox.Text);
             string email = emailBox.Text;
             string firmanavn = firmaNavnBox.Text;
             string produktNavn = produktNavnbox.Text;
-            int produktPris = int.Parse( produktPrisBox.Text);
-            Kvittering kvittering = new Kvittering(købsDato, slutdato, ordrenummer, email, firmanavn, produktNavn,produktPris);
+            int produktPris = int.Parse(produktPrisBox.Text);
+            Kvittering kvittering = new Kvittering(købsDato, slutdato, ordrenummer, email, firmanavn, produktNavn, produktPris);
             daoKvitering.Create(kvittering);
         }
         private async void Opret_Click(object sender, RoutedEventArgs e)
@@ -76,16 +77,16 @@ namespace Kvitteringer
 
         private async void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(SearchBox.Text =="" || SearchBox.Text ==null)
+            if (SearchBox.Text == "" || SearchBox.Text == null)
             {
                 await updateListAsync();
             }
             else
             {
                 data.ItemsSource = "";
-                data.ItemsSource = search.searchForeProduct(SearchBox.Text);
+                data.ItemsSource = search.searchForeProductName()
             }
-           
+
         }
     }
 }
